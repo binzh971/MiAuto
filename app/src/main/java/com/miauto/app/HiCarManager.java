@@ -15,7 +15,7 @@ import android.view.Surface;
  * <p><b>★ 重要：本类是骨架，不能直接编译运行。</b>
  * HiCar 车端 SDK（{@code hicar-sdk.dex}）是华为私有组件，不在本仓库内。
  * 你需要从一台带 HiCar 的前装车机系统里提取 HiCar 车端服务的 dex / so / 资源，
- * 然后按 {@link docs/HICAR_INTEGRATION.md} 的说明把包名、类名、API 调用替换成实际 SDK 的。
+ * 然后按 {@code docs/HICAR_INTEGRATION.md} 的说明把包名、类名、API 调用替换成实际 SDK 的。
  *
  * <p>HiCar 与 ICCOA 的主要差异：
  * <ul>
@@ -25,7 +25,7 @@ import android.view.Surface;
  *   <li>包名：HiCar SDK 通常在 {@code com.huawei.hicar.*} / {@code com.huawei.carmode.*}</li>
  * </ul>
  */
-public class HiCarManager implements CarLinkManager.Listener /* 内部转发用 */ {
+public class HiCarManager implements CarLinkManager {
 
     private static final String TAG = "MiAuto/HiCar";
 
@@ -33,7 +33,7 @@ public class HiCarManager implements CarLinkManager.Listener /* 内部转发用 
     public static final String PROTOCOL_NAME = "华为 HiCar";
 
     private final Context appCtx;
-    private final CarLinkManager.Listener listener;
+    private final Listener listener;
     private final Handler main = new Handler(Looper.getMainLooper());
 
     // ---- HiCar SDK 入口（占位，需替换为实际 SDK 类）----
@@ -83,7 +83,7 @@ public class HiCarManager implements CarLinkManager.Listener /* 内部转发用 
         scheduleAutoRefresh();
     };
 
-    public HiCarManager(Context ctx, CarLinkManager.Listener listener) {
+    public HiCarManager(Context ctx, Listener listener) {
         this.appCtx = ctx.getApplicationContext();
         this.listener = listener;
     }
